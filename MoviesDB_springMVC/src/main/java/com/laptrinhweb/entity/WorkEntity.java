@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -61,7 +63,8 @@ public class WorkEntity extends baseEntity{
 	@JoinColumn(name = "serieid")
 	private SerieEntity serie;
 	
-	@ManyToMany(mappedBy = "workList")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "subgenre_work", joinColumns = @JoinColumn(name = "workid"), inverseJoinColumns = @JoinColumn(name = "subgenreid"))
 	private List<SubGenreEntity> subGenreList = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "work")

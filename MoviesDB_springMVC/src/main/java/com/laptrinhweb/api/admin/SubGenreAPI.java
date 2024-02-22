@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.laptrinhweb.dto.SubGenreDTO;
-import com.laptrinhweb.entity.SubGenreEntity;
 import com.laptrinhweb.service.ISubGenreService;
 
 @RestController(value = "SubGenreAPI_ADMIN")

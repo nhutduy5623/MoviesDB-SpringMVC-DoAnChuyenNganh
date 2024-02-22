@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -13,6 +14,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user")
 public class UserEntity extends baseEntity{
+	
+	@Column(name = "code")
+	private String code;
 	
 	@Column(name = "email")
 	private String email;
@@ -26,16 +30,13 @@ public class UserEntity extends baseEntity{
 	@Column(name = "status")
 	private int status=1;
 	
-	@Column(name = "createddate")
-	private Date createdDate;
-	
 	@Column(name = "avatar", length = 510)
 	private String avatar;	
 	
 	@OneToMany(mappedBy = "user")
 	private List<ViewerVoteDetailEntity> workVoteList = new ArrayList<>(); 
 	
-	@ManyToMany(mappedBy = "userList")
+	@ManyToMany(mappedBy = "userList", fetch = FetchType.LAZY)
 	private List<RoleEntity> roleList = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "userLikeList")
@@ -47,6 +48,16 @@ public class UserEntity extends baseEntity{
 	@ManyToMany(mappedBy = "userLikeList")
 	private List<CommentEntity> commentlike = new ArrayList<>();
 	
+	
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -78,15 +89,7 @@ public class UserEntity extends baseEntity{
 	public void setStatus(int status) {
 		this.status = status;
 	}
-
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
+	
 	public String getAvatar() {
 		return avatar;
 	}

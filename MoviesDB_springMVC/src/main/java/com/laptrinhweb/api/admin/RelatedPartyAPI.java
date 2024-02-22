@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.laptrinhweb.dto.RelatedPartyDTO;
-import com.laptrinhweb.dto.RelatedPartyRoleDTO;
 import com.laptrinhweb.service.IRelatedPartyService;
 
 @RestController(value = "RelatedPartyAPI_ADMIN")

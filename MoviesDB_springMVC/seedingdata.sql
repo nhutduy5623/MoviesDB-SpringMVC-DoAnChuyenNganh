@@ -10,7 +10,7 @@ INSERT INTO role_permission(roleid, permissionid) values(1,1);
 
 /*
 INSERT INTO permission(`code`,`disription`,`name`, `functionurl`)VALUES("USER_MANAGE","Quản lý người dùng","User Management function", "/admin/accountmanage");
-INSERT INTO permission(`code`,`disription`,`name`, `functionurl`)VALUES("GENER_MANAGE","Quản lý thể loại","Account Management function", "/admin/genermanage");
+INSERT INTO permission(`code`,`disription`,`name`, `functionurl`)VALUES("GENER_MANAGE","Quản lý thể loại","Genre Management function", "/admin/genermanage");
 INSERT INTO permission(`code`,`disription`,`name`, `functionurl`)VALUES("WORK_MANAGE","Quản lý tác phẩm","Work Management function", "/admin/workmanage");
 INSERT INTO permission(`code`,`disription`,`name`, `functionurl`)VALUES("RELATEDPARTY_MANAGE","Quản lý tác giả, producer, studio,... ","Relateparty Management function", "/admin/relatedpartymanage");
 INSERT INTO permission(`code`,`disription`,`name`, `functionurl`)VALUES("COMMENT_MANAGE","Quản lý bình luận","Comment Management function", "/admin/commentmanage");

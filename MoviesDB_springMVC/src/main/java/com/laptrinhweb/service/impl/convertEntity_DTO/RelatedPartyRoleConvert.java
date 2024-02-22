@@ -4,11 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.laptrinhweb.dto.GenreDTO;
 import com.laptrinhweb.dto.RelatedPartyRoleDTO;
-import com.laptrinhweb.entity.GenreEntity;
 import com.laptrinhweb.entity.RelatedPartyRoleEntity;
-import com.laptrinhweb.entity.SubGenreEntity;
 import com.laptrinhweb.repository.IRelatedPartyRoleRepository;
 
 @Service

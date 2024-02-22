@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.laptrinhweb.dto.GenreDTO;
 import com.laptrinhweb.dto.SubGenreDTO;
 import com.laptrinhweb.entity.GenreEntity;
 import com.laptrinhweb.entity.SubGenreEntity;
@@ -23,9 +22,13 @@ public class SubGenreConvert {
 	ModelMapper modelMapper;
 	
 	public SubGenreEntity toEntity(SubGenreDTO subGenreDTO) {
-		//Loại bỏ mapper ListGenre
-		modelMapper.createTypeMap(SubGenreDTO.class, SubGenreEntity.class)
-        .addMappings(mapping -> mapping.skip(SubGenreEntity::setGenreList));
+		try {
+			//Loại bỏ mapper ListGenre
+			modelMapper.createTypeMap(SubGenreDTO.class, SubGenreEntity.class)
+	        .addMappings(mapping -> mapping.skip(SubGenreEntity::setGenreList));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		
 		SubGenreEntity subGenreEntity = modelMapper.map(subGenreDTO, SubGenreEntity.class);
 		for (String genreCode : subGenreDTO.getGenreCodeList()) {
@@ -41,7 +44,7 @@ public class SubGenreConvert {
 		SubGenreDTO subGenreDTO = modelMapper.map(subGenreEntity, SubGenreDTO.class);
 		subGenreDTO.getGenreCodeList().clear();
 		for (GenreEntity genreEntity : subGenreEntity.getGenreList()) {
-			subGenreDTO.getGenreCodeList().add(subGenreEntity.getCode());
+			subGenreDTO.getGenreCodeList().add(genreEntity.getCode());
 		}
 		return subGenreDTO;
 	}

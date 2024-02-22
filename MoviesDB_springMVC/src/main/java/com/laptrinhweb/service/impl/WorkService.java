@@ -28,10 +28,6 @@ public class WorkService implements IWorkService{
 	@Transactional
 	public WorkDTO save(WorkDTO workDTO) {
 		WorkEntity workEntity = workRepository.save(workConvert.toEntity(workDTO));		
-		for(SubGenreEntity subGenreEntity: workEntity.getSubGenreList()) {
-			subGenreEntity.getWorkList().add(workEntity);
-			subGenreRepository.save(subGenreEntity);			
-		}
 		workDTO = workConvert.toDTO(workEntity);
 		return workDTO;
 	}

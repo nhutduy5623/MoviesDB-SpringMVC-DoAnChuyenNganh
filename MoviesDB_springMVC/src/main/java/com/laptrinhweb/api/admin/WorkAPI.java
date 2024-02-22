@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.laptrinhweb.dto.GenreDTO;
 import com.laptrinhweb.dto.WorkDTO;
-import com.laptrinhweb.service.IGenreService;
 import com.laptrinhweb.service.IWorkService;
 
 @RestController(value = "WorkAPI_ADMIN")

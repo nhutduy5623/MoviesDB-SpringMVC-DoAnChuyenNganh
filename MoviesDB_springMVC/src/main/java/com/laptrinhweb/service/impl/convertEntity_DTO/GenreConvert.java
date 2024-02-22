@@ -2,11 +2,9 @@ package com.laptrinhweb.service.impl.convertEntity_DTO;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.laptrinhweb.dto.GenreDTO;
-import com.laptrinhweb.dto.SubGenreDTO;
 import com.laptrinhweb.entity.GenreEntity;
 import com.laptrinhweb.entity.SubGenreEntity;
 import com.laptrinhweb.repository.ISubGenreRepository;

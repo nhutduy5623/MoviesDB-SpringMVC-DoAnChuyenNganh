@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.laptrinhweb.dto.GenreDTO;
 import com.laptrinhweb.dto.RelatedPartyRoleDTO;
-import com.laptrinhweb.entity.GenreEntity;
-import com.laptrinhweb.service.IGenreService;
 import com.laptrinhweb.service.IRelatedPartyRoleService;
 
 @RestController(value = "RelatedPartyRoleAPI_ADMIN")

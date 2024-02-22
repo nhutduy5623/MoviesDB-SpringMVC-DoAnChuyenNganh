@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.laptrinhweb.dto.GenreDTO;
 import com.laptrinhweb.dto.SerieDTO;
-import com.laptrinhweb.entity.GenreEntity;
-import com.laptrinhweb.service.IGenreService;
 import com.laptrinhweb.service.ISerieService;
 
 @RestController(value = "SerieAPI_ADMIN")

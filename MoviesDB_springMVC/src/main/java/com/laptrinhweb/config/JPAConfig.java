@@ -55,7 +55,7 @@ public class JPAConfig {
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://localhost:3306/db_moviesdb_jpa");
 		dataSource.setUsername("root");
-		dataSource.setPassword("1234");
+		dataSource.setPassword("");
 		return dataSource;
 	}
 

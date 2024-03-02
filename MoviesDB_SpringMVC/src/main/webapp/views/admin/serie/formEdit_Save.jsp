@@ -38,7 +38,9 @@
 		                            <label class="custom-file-label" for="thumbnail">Choose file</label>
 	                        	</div>
 	                        </div>
-	                        <div class="form-group" style="display: flex; justify-content: flex-end;"><button class="btn btn-primary btnSave_Edit" id="btnSave_Edit" type="button">Submit form</button></div>
+	                        <div class="form-group" style="display: flex; justify-content: flex-end;">
+	                        	<button class="btn btn-primary btnSave_Edit" id="btnSave_Edit" type="button">Submit form</button>
+	                        </div>
                             <input type="hidden" name="id" value="${model.id}"> 
                         </form:form>
                     </div>
@@ -88,7 +90,6 @@
 	    	e.preventDefault();
 		    var data = {};
 		    var formData = $('#form-edit-save').serializeArray();
-		    console.log("FormData: "+formData[3].value)
 		    $.each(formData, function (i, v) {
 	            data[""+v.name+""] = v.value;	
 		    })

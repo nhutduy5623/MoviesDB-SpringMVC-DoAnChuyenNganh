@@ -17,17 +17,17 @@ public class SerieAPI {
 	ISerieService serieService;
 	
 	@PostMapping("/api/admin/serie") 
-	public SerieDTO createGenre(@RequestBody SerieDTO serie) {
+	public SerieDTO createSerie(@RequestBody SerieDTO serie) {
 		return serieService.save(serie);	
 	}
 	
 	@PutMapping("/api/admin/serie") 
-	public SerieDTO updateGenre(@RequestBody SerieDTO serie) {
+	public SerieDTO updateSerie(@RequestBody SerieDTO serie) {
 		return serieService.save(serie);	
 	}
 	
 	@DeleteMapping("/api/admin/serie") 
-	public void deleteGenre(@RequestBody Long[] ids) {
+	public void deleteSerie(@RequestBody Long[] ids) {
 		serieService.delete(ids);	
 	}
 }

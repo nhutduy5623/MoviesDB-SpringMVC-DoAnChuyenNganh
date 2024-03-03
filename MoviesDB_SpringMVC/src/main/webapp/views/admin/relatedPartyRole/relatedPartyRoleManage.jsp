@@ -22,10 +22,10 @@
     <div class="row align-items-center">
         <div class="col-sm-6">
             <div class="breadcrumbs-area clearfix">
-                <h4 class="page-title">Series Management</h4>
+                <h4 class="page-title">Related Party Role Management</h4>
                 <ul class="breadcrumbs pull-left">
                     <li><a href="home">Home</a></li>
-                    <li><span>Series Management</span></li>
+                    <li><span>Related Party Role Management</span></li>
                 </ul>
             </div>
         </div>
@@ -50,8 +50,8 @@
             <div class="card">
                 <div class="card-body" style="padding-top: 0%">
                     <div style="width:100%; display: flex; flex-direction: columns; justify-content: space-between; align-content: center; margin: 2% 0% ; text-align: center;">
-	                    <div  style="text-align: center; margin: auto 0%;"><p class="header-title" style="padding: 0%; margin: 0%">Serie Data</p></div>
-	                    <a href="serie/save"><button type="button" class="btn btn-primary"><div class="fw-icons"><i class="fa fa-plus-square" style="margin-right: 2px"></i> Add New</div></button></a>
+	                    <div  style="text-align: center; margin: auto 0%;"><p class="header-title" style="padding: 0%; margin: 0%">Genre Data</p></div>
+	                    <a href="relatedpartyrole/save"><button type="button" class="btn btn-primary"><div class="fw-icons"><i class="fa fa-plus-square" style="margin-right: 2px"></i> Add New</div></button></a>
                     </div>
                     <div class="data-tables">
                         <table id="dataTable" class="text-center">
@@ -59,7 +59,7 @@
                                 <tr>
                                 	<th>Code</th>
                                     <th>Name</th>
-                                    <th>ThumbNail</th>
+                                    <th>Detail</th>
                                     <th>Modified By</th>
                                     <th>Tool</th>
                                 </tr>
@@ -69,11 +69,11 @@
                                 	<tr>
 	                                    <td>${item.code}</td>
 	                                    <td>${item.name}</td>
-	                                    <td><img style="padding: 10%; border-radius: 1%" src="<c:url value='${item.thumbnail}' />"></td>
+	                                    <td>${item.detail}</td>
 	                                    <td>${item.modifiedBy}</td>
 	                                    <td >
 	                                   		<div class="fw-icons">
-	                                   			<a href="serie/edit?id=${item.id}"><i class="fa fa-wrench"></i>Edit</a>
+	                                   			<a href="relatedpartyrole/edit?id=${item.id}"><i class="fa fa-wrench"></i>Edit</a>
 	                                    	</div>
 	                                    	<div class="fw-icons" id="${item.id}">
 	                                    		<a href="#" class="btnDelete" onclick="onClickBtnDelete()"  id="btnDelete_${item.id}"><i class="fa fa-trash"></i>Delete</a>
@@ -86,7 +86,7 @@
                     </div>
                     <!-- Pagination -->
                     <div style="width: 100%; display: flex; justify-content: space-between; align-items: center">
-                    	<form id="formChangePage" action="serie" method="get" style="height: 50%; margin: auto 0;">
+                    	<form id="formChangePage" action="relatedpartyrole" method="get" style="height: 50%; margin: auto 0;">
                     		Max page item:
 	                		<select class="form-control" name="limit" id="maxPageItem" style="width: 100%; height: 100%">
 	                               <option value="2">2</option>
@@ -134,13 +134,13 @@
 	
 	<!-- Search -->
 	<script type="text/javascript">
-	$("#formSearchInput").attr('action')="serie";
+	$("#formSearchInput").attr('action')="relatedpartyrole";
 	</script>
 	
 	
 	
 	<!-- Delete -->
-	<c:url var="restAPI_URL" value="/api/admin/serie"/>
+	<c:url var="restAPI_URL" value="/api/admin/relatedpartyrole"/>
 	<script type="text/javascript">
 
 	$(".btnDelete").click(function(e){

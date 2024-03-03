@@ -17,17 +17,17 @@ public class RelatedPartyRoleAPI {
 	IRelatedPartyRoleService relatedPartyRoleService;
 	
 	@PostMapping("/api/admin/relatedpartyrole") 
-	public RelatedPartyRoleDTO createGenre(@RequestBody RelatedPartyRoleDTO relatedPartyRole) {
+	public RelatedPartyRoleDTO createRelatedPartyRole(@RequestBody RelatedPartyRoleDTO relatedPartyRole) {
 		return relatedPartyRoleService.save(relatedPartyRole);	
 	}
 	
 	@PutMapping("/api/admin/relatedpartyrole") 
-	public RelatedPartyRoleDTO updateGenre(@RequestBody RelatedPartyRoleDTO relatedPartyRole) {
+	public RelatedPartyRoleDTO updateRelatedPartyRole(@RequestBody RelatedPartyRoleDTO relatedPartyRole) {
 		return relatedPartyRoleService.save(relatedPartyRole);	
 	}
 	
 	@DeleteMapping("/api/admin/relatedpartyrole") 
-	public void deleteGenre(@RequestBody Long[] ids) {
+	public void deleteRelatedPartyRole(@RequestBody Long[] ids) {
 		relatedPartyRoleService.delete(ids);	
 	}
 }

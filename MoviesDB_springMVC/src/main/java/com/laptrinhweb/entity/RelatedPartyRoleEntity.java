@@ -18,6 +18,9 @@ public class RelatedPartyRoleEntity extends baseEntity{
 	@Column(name = "detail", length = 510)
 	private String detail;
 	
+	@Column(name = "code")
+	private String code;
+	
 	@OneToMany(mappedBy = "RProle")
 	private List<RelatedPartyEntity> relatedParties = new ArrayList<>();
 
@@ -36,6 +39,15 @@ public class RelatedPartyRoleEntity extends baseEntity{
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 
 	public List<RelatedPartyEntity> getRelatedParties() {
 		return relatedParties;

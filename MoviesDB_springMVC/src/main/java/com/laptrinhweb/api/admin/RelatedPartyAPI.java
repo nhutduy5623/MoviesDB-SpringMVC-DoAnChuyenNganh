@@ -16,17 +16,17 @@ public class RelatedPartyAPI {
 	IRelatedPartyService relatedPartyService;
 
 	@PostMapping("/api/admin/relatedparty")
-	public RelatedPartyDTO createGenre(@RequestBody RelatedPartyDTO relatedParty) {
+	public RelatedPartyDTO createRelatedParty(@RequestBody RelatedPartyDTO relatedParty) {
 		return relatedPartyService.save(relatedParty);
 	}
 
 	@PutMapping("/api/admin/relatedparty")
-	public RelatedPartyDTO updateGenre(@RequestBody RelatedPartyDTO relatedParty) {
+	public RelatedPartyDTO updateRelatedParty(@RequestBody RelatedPartyDTO relatedParty) {
 		return relatedPartyService.save(relatedParty);
 	}
 
 	@DeleteMapping("/api/admin/relatedparty")
-	public void deleteGenre(@RequestBody Long[] ids) {
+	public void deleteRelatedParty(@RequestBody Long[] ids) {
 		relatedPartyService.delete(ids);
 	}
 

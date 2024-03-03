@@ -33,6 +33,7 @@ public class RelatedPartyConvert {
 		RelatedPartyDTO relatedPartyDTO = new RelatedPartyDTO();
 		relatedPartyDTO = modelMapper.map(relatedPartyEntity, RelatedPartyDTO.class);
 		relatedPartyDTO.setRoleId(relatedPartyEntity.getRProle().getId());
+		relatedPartyDTO.setRoleCode(relatedPartyEntity.getRProle().getCode());
 		return relatedPartyDTO;
 	}
 }

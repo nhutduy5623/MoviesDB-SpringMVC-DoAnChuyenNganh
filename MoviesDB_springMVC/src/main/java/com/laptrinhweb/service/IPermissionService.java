@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.laptrinhweb.dto.GenreDTO;
 import com.laptrinhweb.dto.PermissionDTO;
 
 @Service

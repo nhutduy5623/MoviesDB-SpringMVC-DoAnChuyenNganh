@@ -179,21 +179,21 @@
 		    })
 		    //Xử lý thumbnail, Background
 		    data["thumbnail"] = $("#thumbnail1").val();	    
-		    if($("#thumbnail1").val()!="")		    	
+		    if($("#thumbnail2")[0].files[0].name =="")		    	
 		    	data["thumbnail"] = $("#thumbnail1").val();	
 		    else {
 		    	thumbnail = $("#thumbnail2")[0].files[0].name;
-		    	data["thumbnail"] = "/images/"+thumbnail;
+		    	data["thumbnail"] = "/template/uploads/"+thumbnail;
 		    	var formData = new FormData();
 				formData.append('fileName', $("#thumbnail2")[0].files[0]);
 			    uploadFile(formData)
 		    }
 		    data["background"] = $("#background1").val();	    
-		    if($("#background1").val()!="")		    	
+		    if($("#thumbnail2")[0].files[0].name =="")		    	
 		    	data["thumbnail"] = $("#background1").val();	
 		    else {
 		    	thumbnail = $("#background2")[0].files[0].name;
-		    	data["background"] = "/images/"+thumbnail;
+		    	data["background"] = "/template/uploads/"+thumbnail;
 		    	var formData = new FormData();
 				formData.append('fileName', $("#background2")[0].files[0]);
 			    uploadFile(formData)

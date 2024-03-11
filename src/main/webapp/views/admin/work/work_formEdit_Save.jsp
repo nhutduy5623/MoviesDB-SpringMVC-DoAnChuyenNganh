@@ -69,7 +69,7 @@
                                         input:genre/code-Ex:tv/11110)</label>
                                     <div class="form-group mb-3 fillInformAPI"
                                         style="display: flex; flex-direction: row; flex-wrap: nowrap;">
-                                        <div>
+                                        <div class="btn_fillInformAPI">
                                             <button class="btn btn-outline-secondary btn_fillInformAPI" type="button">
                                                 Fill With Code </button>
                                         </div>
@@ -251,6 +251,8 @@
             <c:url var="API_SubGenre_URL" value="/api/subgenre/getbygenrecode" />
             <c:url var="Upload_URL" value="/api/admin/UploadFile" />
             <c:url var="UploadImg_URL" value="/uploads/" />
+            <c:url var="API_GetInformTMDB" value="/admin/work/fullfillinform" />
+            
             <script>
                 $(".btn_changeTypeInputThumbnail").click(function () {
                     $(".btn_changeTypeInputThumbnail").parent().parent().show();
@@ -425,5 +427,11 @@
                         }
                     })
                 });
+                
+                
+                $(".btn_fillInformAPI").click(function (e) {
+                	if($("#code").val() != "")
+                		window.location.href = '${API_GetInformTMDB}'+"?code="+$("#code").val();
+                })
             </script>
         </div>

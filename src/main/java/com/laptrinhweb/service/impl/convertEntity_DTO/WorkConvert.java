@@ -78,7 +78,6 @@ public class WorkConvert {
 			workDTO.getListRelatedPartyCode_Role().add(new RelatedPartyWorkDetailDTO(relatedPartyDetail.getRelatedParty().getCode(), relatedPartyDetail.getRole()));
 		}
 		return workDTO;
-		
 	}
 
 }

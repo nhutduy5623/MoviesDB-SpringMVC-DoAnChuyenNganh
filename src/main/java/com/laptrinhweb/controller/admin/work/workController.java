@@ -1,6 +1,7 @@
 package com.laptrinhweb.controller.admin.work;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.laptrinhweb.SystemConstant;
 import com.laptrinhweb.dto.WorkDTO;
+import com.laptrinhweb.dto.TheMovieDB_Format.TMDB_WorkDTO;
 import com.laptrinhweb.service.IGenreService;
 import com.laptrinhweb.service.IRelatedPartyRoleService;
 import com.laptrinhweb.service.IRelatedPartyService;
@@ -111,10 +114,8 @@ public class workController {
 	}
 	
 	@RequestMapping(value = "/admin/work/fullfillinform", method = RequestMethod.GET)
-	public ModelAndView fillInformWithAPI(@RequestParam(value = "code", required = true) String code, HttpServletRequest request) throws IOException {
-		ModelAndView mav = new ModelAndView("admin/work/work_formEdit_Save");
-		WorkDTO workDTO = new WorkDTO();
-		
+	public ModelAndView fillInformWithAPI(@RequestParam(value = "code", required = true) String code, HttpServletRequest request) throws IOException, ParseException {
+		ModelAndView mav = new ModelAndView("admin/work/work_formEdit_Save");		
 		
 		OkHttpClient client = new OkHttpClient();
 
@@ -127,12 +128,18 @@ public class workController {
 
 		Response response = client.newCall(rqAPI).execute();
 		
-		
-		System.out.println("response.body().string(): "+response.body().string());
-		
+		String jsonTMDB = response.body().string();
+		System.out.println("response.body().string(): "+jsonTMDB);
+        ObjectMapper objectMapper = new ObjectMapper();
+		TMDB_WorkDTO workTMDB = objectMapper.readValue(jsonTMDB, TMDB_WorkDTO.class);
+		WorkDTO workDTO = new WorkDTO(workTMDB);
 		mav.addObject("model", workDTO);
 		mav.addObject("genreCodeList", genreService.findAll_HasMap());
 		mav.addObject("subGenreCodeList", subGenreService.findAll_HasMap());
+		mav.addObject("listRelatedPartyRole", relatedPartyRoleService.findAll());
+		mav.addObject("listRelatedParty", relatedPartyService.findAll());
+		mav.addObject("listRPByWork", relatedPartyService.findByWork(new WorkDTO()));
+		mav.addObject("listRPWithoutWork", relatedPartyService.findWithoutWork(new WorkDTO()));
 		return mav;
 	}
 }

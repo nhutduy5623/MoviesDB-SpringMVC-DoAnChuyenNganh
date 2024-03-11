@@ -20,7 +20,7 @@ public class WorkDTO extends AbstractDTO<WorkDTO>{
 	private String genreCode;
 	private String serieCode;
 	private List<String> subGenreCodeList = new ArrayList<>();
-	
+	private List<RelatedPartyWorkDetailDTO> listRelatedPartyCode_Role = new ArrayList<>();
 	//Cần thêm Related
 	
 	public String getCode() {
@@ -112,6 +112,11 @@ public class WorkDTO extends AbstractDTO<WorkDTO>{
 	}
 	public void setSubGenreCodeList(List<String> subGenreCodeList) {
 		this.subGenreCodeList = subGenreCodeList;
+	}
+	public List<RelatedPartyWorkDetailDTO> getListRelatedPartyCode_Role() {
+		return listRelatedPartyCode_Role;
+	}
+	public void setListRelatedPartyCode_Role(List<RelatedPartyWorkDetailDTO> listRelatedPartyCode_Role) {
+		this.listRelatedPartyCode_Role = listRelatedPartyCode_Role;
 	}	
-
 }

@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.laptrinhweb.SystemConstant;
-import com.laptrinhweb.dto.SubGenreDTO;
 import com.laptrinhweb.dto.WorkDTO;
 import com.laptrinhweb.service.IGenreService;
+import com.laptrinhweb.service.IRelatedPartyRoleService;
+import com.laptrinhweb.service.IRelatedPartyService;
 import com.laptrinhweb.service.ISubGenreService;
 import com.laptrinhweb.service.IWorkService;
 import com.squareup.okhttp.OkHttpClient;
@@ -34,6 +35,12 @@ public class workController {
 	
 	@Autowired
 	IGenreService genreService;
+	
+	@Autowired
+	IRelatedPartyService relatedPartyService;
+	
+	@Autowired
+	IRelatedPartyRoleService relatedPartyRoleService;
 
 	@RequestMapping(value = "/admin/work", method = RequestMethod.GET)
 	public ModelAndView homePage(@RequestParam(value = "page", required = false) Integer page,
@@ -78,9 +85,14 @@ public class workController {
 	@RequestMapping(value = "/admin/work/save", method = RequestMethod.GET)
 	public ModelAndView savePage() {
 		ModelAndView mav = new ModelAndView("admin/work/work_formEdit_Save");
-		mav.addObject("model", new WorkDTO());
+		WorkDTO workDto = new WorkDTO();
+		mav.addObject("model", workDto);
 		mav.addObject("genreCodeList", genreService.findAll_HasMap());
 		mav.addObject("subGenreCodeList", subGenreService.findAll_HasMap());
+		mav.addObject("listRelatedPartyRole", relatedPartyRoleService.findAll());
+		mav.addObject("listRelatedParty", relatedPartyService.findAll());
+		mav.addObject("listRPByWork", relatedPartyService.findByWork(workDto));
+		mav.addObject("listRPWithoutWork", relatedPartyService.findWithoutWork(workDto));
 		return mav;
 	}
 

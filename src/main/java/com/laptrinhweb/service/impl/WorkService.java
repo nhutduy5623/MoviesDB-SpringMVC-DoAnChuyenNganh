@@ -13,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.laptrinhweb.dto.GenreDTO;
 import com.laptrinhweb.dto.WorkDTO;
 import com.laptrinhweb.entity.GenreEntity;
+import com.laptrinhweb.entity.RelatedPartyWorkDetailEntity;
 import com.laptrinhweb.entity.SubGenreEntity;
 import com.laptrinhweb.entity.WorkEntity;
+import com.laptrinhweb.repository.IRelatedPartyWorkDetailRepository;
 import com.laptrinhweb.repository.ISubGenreRepository;
 import com.laptrinhweb.repository.IWorkRepository;
 import com.laptrinhweb.service.IWorkService;
@@ -30,12 +32,25 @@ public class WorkService implements IWorkService{
 	ISubGenreRepository subGenreRepository;
 	
 	@Autowired
-	WorkConvert workConvert;
+	WorkConvert workConvert;	
+	
+	@Autowired
+	IRelatedPartyWorkDetailRepository relatedPartyWorkDetailRepository;
+	
 	
 	@Override
 	@Transactional
 	public WorkDTO save(WorkDTO workDTO) {
+		if(workDTO.getId()!=null) {
+			WorkEntity work = workRepository.findOne(workDTO.getId());
+			for(RelatedPartyWorkDetailEntity RP_Work_detail: work.getRelatedPartyDetailList()) {
+				relatedPartyWorkDetailRepository.delete(RP_Work_detail);
+			}
+		}
 		WorkEntity workEntity = workRepository.save(workConvert.toEntity(workDTO));		
+		for(RelatedPartyWorkDetailEntity RB_Work_Detail: workEntity.getRelatedPartyDetailList()) {
+			relatedPartyWorkDetailRepository.save(RB_Work_Detail);
+		}
 		workDTO = workConvert.toDTO(workEntity);
 		return workDTO;
 	}
@@ -46,6 +61,11 @@ public class WorkService implements IWorkService{
 		for(Long id:ids) {
 			WorkEntity work = workRepository.findOne(id);
 			work.getSubGenreList().clear();	
+			for(RelatedPartyWorkDetailEntity RP_Work_detail: work.getRelatedPartyDetailList()) {
+				relatedPartyWorkDetailRepository.delete(RP_Work_detail);
+			}
+			work.getRelatedPartyDetailList().clear();
+			
 			workRepository.delete(id);
 		}
 	}

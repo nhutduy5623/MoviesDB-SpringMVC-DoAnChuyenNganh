@@ -34,5 +34,12 @@ public class RelatedPartyWorkDetailDTO extends AbstractDTO<RelatedPartyWorkDetai
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	@Override
+	public String toString() {
+		return "RelatedPartyWorkDetailDTO [workCode=" + workCode + ", relatedPartyCode=" + relatedPartyCode + ", role="
+				+ role + "]";
 	}	
+	
+	
 }

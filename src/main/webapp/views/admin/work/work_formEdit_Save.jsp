@@ -121,6 +121,10 @@
                                         <input type="date" name="relatedDate" id="relatedDate" class="form-control"
                                             value="${model.relatedDate}" />
                                     </div>
+                                    <div class="form-group">
+                                        <label for="serieCode" class="col-form-label">Serie</label>
+                                        <form:input path="serieCode" id="serieCode" cssClass="form-control" />
+                                    </div>
                                     <label for="example-email-input" class="col-form-label">Work Thumbnail (URL or
                                         UploadFile)</label>
                                     <div class="form-group mb-3 changeTypeInputThumbnail"
@@ -185,16 +189,16 @@
 									    <label for="example-email-input" class="col-form-label">${item.name}</label>
 									    <div class="listRelatedParty_1Role">
 									      <c:forEach var="relatedPartyByWork" items="${listRPByWork.entrySet()}" varStatus="loop">
-									        <c:if test='${relatedPartyByWork.roleCode == item.code}'>
+									        <c:if test='${relatedPartyByWork.key.roleCode == item.code}'>
 									          <div class="relatedPartyItem">
-									            <input type="checkbox" id="relatedPartyByWork${loop.index}" class="btn_relatedPartyCheckBox"
+									            <input type="checkbox" id="relatedPartyByWork${loop.index}" checked="checked" class="btn_relatedPartyCheckBox"
 									              value="${relatedPartyByWork.key.code}" />
 									            <label for="relatedPartyWithout${loop.index}">
 									              <img class="img_relatedPartyCheckBox" src='${relatedPartyByWork.key.avatar}' />
 									              <div class="inform_RP">
 									                <div>${relatedPartyByWork.key.name}</div>
 									                Role:
-									                <input type="text" name="roleWork" class="inputRole" value="${relatedPartyByWork.value}"
+									                <input type="text" class="inputRole" value="${relatedPartyByWork.value}"
 									                  class="form-control" />
 									              </div>
 									            </label>
@@ -373,7 +377,8 @@
                             window.location.href = "${listURL}?message=insert_success";
                         },
                         error: function (error) {
-                            window.location.href = "${listURL}?page=1&limit=2&message=error_system";
+                        	alert("Error")
+                        	console.log(error);
                         }
                     });
                 };

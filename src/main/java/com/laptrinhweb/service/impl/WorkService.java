@@ -10,12 +10,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.laptrinhweb.dto.GenreDTO;
+import com.laptrinhweb.dto.RelatedPartyWorkDetailDTO;
 import com.laptrinhweb.dto.WorkDTO;
-import com.laptrinhweb.entity.GenreEntity;
 import com.laptrinhweb.entity.RelatedPartyWorkDetailEntity;
-import com.laptrinhweb.entity.SubGenreEntity;
 import com.laptrinhweb.entity.WorkEntity;
+import com.laptrinhweb.repository.IRelatedPartyRepository;
 import com.laptrinhweb.repository.IRelatedPartyWorkDetailRepository;
 import com.laptrinhweb.repository.ISubGenreRepository;
 import com.laptrinhweb.repository.IWorkRepository;
@@ -37,6 +36,8 @@ public class WorkService implements IWorkService{
 	@Autowired
 	IRelatedPartyWorkDetailRepository relatedPartyWorkDetailRepository;
 	
+	@Autowired
+	IRelatedPartyRepository relatedPartyRepository;
 	
 	@Override
 	@Transactional
@@ -47,11 +48,13 @@ public class WorkService implements IWorkService{
 				relatedPartyWorkDetailRepository.delete(RP_Work_detail);
 			}
 		}
-		WorkEntity workEntity = workRepository.save(workConvert.toEntity(workDTO));		
-		for(RelatedPartyWorkDetailEntity RB_Work_Detail: workEntity.getRelatedPartyDetailList()) {
-			relatedPartyWorkDetailRepository.save(RB_Work_Detail);
+		WorkEntity workEntity = workRepository.save(workConvert.toEntity(workDTO));	
+		workEntity.getRelatedPartyDetailList().clear();
+		for(RelatedPartyWorkDetailDTO RB_Work_Detail: workDTO.getListRelatedPartyCode_Role()) {
+			workEntity.getRelatedPartyDetailList().add(relatedPartyWorkDetailRepository.save(new RelatedPartyWorkDetailEntity(workEntity, relatedPartyRepository.findOneByCode(RB_Work_Detail.getRelatedPartyCode()), RB_Work_Detail.getRole())));
 		}
 		workDTO = workConvert.toDTO(workEntity);
+		
 		return workDTO;
 	}
 

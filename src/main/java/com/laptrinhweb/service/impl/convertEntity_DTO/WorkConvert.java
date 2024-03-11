@@ -68,9 +68,7 @@ public class WorkConvert {
 			.addMappings(mapping -> mapping.skip(WorkDTO::setSubGenreCodeList));
 			} catch (Exception e) {
 		}
-		for (RelatedPartyWorkDetailEntity relatedPartyDetail : workEntity.getRelatedPartyDetailList()) {
-			System.out.println(relatedPartyDetail.getRelatedParty().toString());
-		}
+		
 		WorkDTO workDTO = modelMapper.map(workEntity, WorkDTO.class);
 		workDTO.setGenreCode(workEntity.getGenre().getCode());
 		for (SubGenreEntity subGenreEntity : workEntity.getSubGenreList())

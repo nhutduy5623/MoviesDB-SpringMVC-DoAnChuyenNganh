@@ -61,11 +61,11 @@ public class workController {
 			if(search == null) {
 				workDTO.setListResults(workService.findAll(pageable));
 				workDTO.setTotalPages(workService.countAll());
-				workDTO.setTotalPages((int) Math.ceil((double) subGenreService.countAll()/workDTO.getLimit()));
+				workDTO.setTotalPages((int) Math.ceil((double) workService.countAll()/workDTO.getLimit()));
 			} else {
 				workDTO.setSearchValue(search);
 				workDTO.setListResults(workService.findByNamePageable(search, pageable));
-				workDTO.setTotalPages((int) Math.ceil((double) subGenreService.countByName(search)/workDTO.getLimit()));
+				workDTO.setTotalPages((int) Math.ceil((double) workService.countByName(search)/workDTO.getLimit()));
 			}
 		}else {
 			workDTO.setListResults(workService.findByGenre_Code(genreCode, pageable));
@@ -85,14 +85,14 @@ public class workController {
 	@RequestMapping(value = "/admin/work/save", method = RequestMethod.GET)
 	public ModelAndView savePage() {
 		ModelAndView mav = new ModelAndView("admin/work/work_formEdit_Save");
-		WorkDTO workDto = new WorkDTO();
-		mav.addObject("model", workDto);
+		WorkDTO workDTO = new WorkDTO();
+		mav.addObject("model", workDTO);
 		mav.addObject("genreCodeList", genreService.findAll_HasMap());
 		mav.addObject("subGenreCodeList", subGenreService.findAll_HasMap());
 		mav.addObject("listRelatedPartyRole", relatedPartyRoleService.findAll());
 		mav.addObject("listRelatedParty", relatedPartyService.findAll());
-		mav.addObject("listRPByWork", relatedPartyService.findByWork(workDto));
-		mav.addObject("listRPWithoutWork", relatedPartyService.findWithoutWork(workDto));
+		mav.addObject("listRPByWork", relatedPartyService.findByWork(workDTO));
+		mav.addObject("listRPWithoutWork", relatedPartyService.findWithoutWork(workDTO));
 		return mav;
 	}
 
@@ -103,6 +103,10 @@ public class workController {
 		mav.addObject("model", workDTO);
 		mav.addObject("genreCodeList", genreService.findAll_HasMap());
 		mav.addObject("subGenreCodeList", subGenreService.findAll_HasMap());
+		mav.addObject("listRelatedPartyRole", relatedPartyRoleService.findAll());
+		mav.addObject("listRelatedParty", relatedPartyService.findAll());
+		mav.addObject("listRPByWork", relatedPartyService.findByWork(workDTO));
+		mav.addObject("listRPWithoutWork", relatedPartyService.findWithoutWork(workDTO));
 		return mav;
 	}
 	

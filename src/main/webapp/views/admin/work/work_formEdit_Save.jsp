@@ -89,37 +89,42 @@
                                         <!-- <input class="form-control" type="text" name="name" id="name" value="${model.name}"> -->
                                     </div>
                                     <div class="form-group">
+                                        <label for="overview" class="col-form-label">Trailer link (From Youtube!!!)</label>
+                                        <form:input path="video" id="video" cssClass="form-control" />
+                                        <!-- <input class="form-control" type="text" name="name" id="name" value="${model.name}"> -->
+                                    </div>
+                                    <div class="form-group">
                                         <label for="budget" class="col-form-label">Budget</label>
-                                        <form:input path="budget" id="budget" cssClass="form-control" />
+                                        <form:input type="number" path="budget" id="budget" cssClass="form-control" />
                                     </div>
                                     <div class="form-group">
                                         <label for="followerCount" class="col-form-label">Follower Count</label>
-                                        <form:input path="followerCount" id="followerCount" cssClass="form-control" />
+                                        <form:input type="number" path="followerCount" id="followerCount" cssClass="form-control" />
                                     </div>
                                     <div class="form-group">
                                         <label for="viewerCount" class="col-form-label">Viewer Count</label>
-                                        <form:input path="viewerCount" id="viewerCount" cssClass="form-control" />
+                                        <form:input type="number" path="viewerCount" id="viewerCount" cssClass="form-control" />
                                     </div>
                                     <div class="form-group" style="display: flex; flex-direction: row;">
                                         <div
                                             style="display: flex; flex-direction: column; width: 50%; margin-right: 1px">
                                             <label for="score" class="col-form-label">Score</label>
                                             <div class="form-group" style="margin-bottom: 0">
-                                                <form:input path="score" id="score" cssClass="form-control" />
+                                                <form:input type="number" path="score" id="score" cssClass="form-control" />
                                             </div>
                                         </div>
                                         <div
                                             style="display: flex; flex-direction: column; width: 50%; margin-left: 1px">
                                             <label for="voteCount" class="col-form-label">Vote Count</label>
                                             <div class="form-group" style="margin-bottom: 0;">
-                                                <form:input path="voteCount" id="voteCount" cssClass="form-control" />
+                                                <form:input type="number" path="voteCount" id="voteCount" cssClass="form-control" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="relatedDate" class="col-form-label">Related Date</label>
-                                        <input type="date" name="relatedDate" id="relatedDate" class="form-control"
-                                            value="${model.relatedDate}" />
+                                       	<form:input  type="date" path="relatedDate" id="relatedDate" cssClass="form-control" />
+                                            
                                     </div>
                                     <div class="form-group">
                                         <label for="serieCode" class="col-form-label">Serie</label>
@@ -160,7 +165,7 @@
                                         </div>
                                         <div class="form-group" style="width: 100%; margin-bottom: 0%">
                                             <input type="text" class="form-control" id="background1"
-                                                value="${model.thumbnail}">
+                                                value="${model.background}">
                                         </div>
                                     </div>
                                     <div class="input-group mb-3 changeTypeInputBackground" style="display: none">
@@ -310,7 +315,7 @@
                     data["background"] = $("#background1").val();
                     var isParentVisible = $("#background2").parent().parent().is(":visible");
                     if (isParentVisible == false)
-                        data["thumbnail"] = $("#background1").val();
+                        data["background"] = $("#background1").val();
                     else {
                         thumbnail = $("#background2")[0].files[0].name;
                         data["background"] = "/template/uploads/" + thumbnail;
@@ -399,10 +404,9 @@
                     })
                 }
 
-
-                $('input[type=radio][name=genreCode]').change(function () {
-                    console.log("data: ")
-                    data = this.value;
+				function checkListSubGenre_Genre(genreCode) {
+					console.log("data: ")
+                    data = genreCode;
                     $.ajax({
                         url: '${API_SubGenre_URL}',
                         type: 'POST',
@@ -413,12 +417,13 @@
                             $('input[type=checkbox][name=subGenreCodeList]').parent().hide();
                             $('input[type=checkbox][name=subGenreCodeList]').each(function () {
                                 subgenre = $(this).val();
-                                element = $(this)
+                                element = $(this);         
                                 result.forEach(function (obj) {
+                                	element.prop('checked', false);
                                     if (subgenre + "" == obj.code + "") {
                                         element.parent().show();
-                                    }
-
+                                    } 
+                                                                    
                                 })
                             });
                         },
@@ -426,6 +431,10 @@
                             console.log(error)
                         }
                     })
+				}
+                $('input[type=radio][name=genreCode]').change(function () {
+                    console.log("data: ")
+                    checkListSubGenre_Genre(this.value)
                 });
                 
                 

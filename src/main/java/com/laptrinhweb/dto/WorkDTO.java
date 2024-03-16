@@ -1,21 +1,22 @@
 package com.laptrinhweb.dto;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.google.protobuf.TextFormat.ParseException;
 import com.laptrinhweb.dto.TheMovieDB_Format.TMDB_WorkDTO;
+import com.laptrinhweb.dto.TheMovieDB_Format.TMDB_subGenreDTO;
 
 public class WorkDTO extends AbstractDTO<WorkDTO>{
 	private String code;
 	private String name;
 	private String overview;
 	private String thumbnail;
+	private String video;
 	private double budget;
-	private Long followerCount;
-	private Long viewerCount;
+	private Long followerCount=(long) 0;
+	private Long viewerCount=(long) 0;
 	private int score;
 	private Long voteCount;
 	private Date relatedDate;
@@ -52,6 +53,12 @@ public class WorkDTO extends AbstractDTO<WorkDTO>{
 	}
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
+	}	
+	public String getVideo() {
+		return video;
+	}
+	public void setVideo(String video) {
+		this.video = video;
 	}
 	public double getBudget() {
 		return budget;
@@ -148,16 +155,32 @@ public class WorkDTO extends AbstractDTO<WorkDTO>{
 		this.listRelatedPartyCode_Role = listRelatedPartyCode_Role;
 	}	
 	
-	 public WorkDTO(TMDB_WorkDTO workTMDB) throws java.text.ParseException {
+	 public WorkDTO(TMDB_WorkDTO workTMDB, String genreCode) throws java.text.ParseException {
 	        this.code = workTMDB.getId();
-	        this.name = workTMDB.getName();
+	        if(genreCode.equals("movie")) {
+		        this.name = workTMDB.getTitle();
+	        } else {
+		        this.name = workTMDB.getName();
+	        }
 	        this.overview = workTMDB.getOverview();
-	        this.thumbnail = "https://image.tmdb.org/t/p/w600_and_h900_bestv2"+workTMDB.getPoster_path();
-	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	        this.relatedDate = formatter.parse(workTMDB.getFirst_air_date());
+	        this.thumbnail = "https://media.themoviedb.org/t/p/w300_and_h450_bestv2"+workTMDB.getPoster_path();
+	        SimpleDateFormat  formatter = new SimpleDateFormat("yyyy-MM-dd");
+	        System.out.println(workTMDB.getFirst_air_date());
+	        if(workTMDB.getFirst_air_date()!=null) {
+	        	System.out.println(workTMDB.getFirst_air_date());
+	        	this.relatedDate = new Date(formatter.parse(workTMDB.getFirst_air_date()).getTime());
+	        	System.out.println(this.relatedDate);
+
+	        }
 	        this.background = "https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces"+workTMDB.getBackdrop_path();
 	        this.voteCount = Long.parseLong(workTMDB.getVote_count());
 	        this.score = (int) Double.parseDouble(workTMDB.getVote_average());
+	        this.genreCode = genreCode;
+	        if(workTMDB.getBudget()!=null)
+	        	this.budget = Double.parseDouble(workTMDB.getBudget());
+	        for(TMDB_subGenreDTO tmdb_subGenreDTO:workTMDB.getGenres()) {
+		        this.subGenreCodeList.add(tmdb_subGenreDTO.getId());
+	        }
 	        // Other fields can be similarly handled
 	 }
 	public WorkDTO() {

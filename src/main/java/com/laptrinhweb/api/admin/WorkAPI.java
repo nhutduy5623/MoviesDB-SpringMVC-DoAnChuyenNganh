@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.laptrinhweb.dto.RelatedPartyWorkDetailDTO;
 import com.laptrinhweb.dto.WorkDTO;
 import com.laptrinhweb.service.IWorkService;
 
@@ -19,9 +18,6 @@ public class WorkAPI {
 	
 	@PostMapping("/api/admin/work") 
 	public WorkDTO createGenre(@RequestBody WorkDTO work) {
-		for(RelatedPartyWorkDetailDTO dto :work.getListRelatedPartyCode_Role()) {
-			System.out.println(dto.toString());
-		}
 		return workService.save(work);	
 	}
 	

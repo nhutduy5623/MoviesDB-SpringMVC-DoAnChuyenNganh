@@ -1,5 +1,6 @@
 package com.laptrinhweb.entity;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class UserEntity extends baseEntity{
 	
-	@Column(name = "code", unique = true)
+	@Column(name = "code")
 	private String code;
 	
 	@Column(name = "email")

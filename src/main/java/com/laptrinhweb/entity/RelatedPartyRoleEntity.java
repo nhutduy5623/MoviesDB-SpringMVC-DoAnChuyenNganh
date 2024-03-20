@@ -12,9 +12,6 @@ import javax.persistence.Table;
 @Table(name = "relatedpartyrole")
 public class RelatedPartyRoleEntity extends baseEntity{
 	
-	@Column(name = "code", unique = true)
-	private String code;
-	
 	@Column(name = "name")
 	private String name;
 	
@@ -24,8 +21,6 @@ public class RelatedPartyRoleEntity extends baseEntity{
 	@OneToMany(mappedBy = "RProle")
 	private List<RelatedPartyEntity> relatedParties = new ArrayList<>();
 
-	
-	
 	public String getName() {
 		return name;
 	}
@@ -48,14 +43,6 @@ public class RelatedPartyRoleEntity extends baseEntity{
 
 	public void setRelatedParties(List<RelatedPartyEntity> relatedParties) {
 		this.relatedParties = relatedParties;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}		
+	}	
 	
 }

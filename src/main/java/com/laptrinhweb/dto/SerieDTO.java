@@ -3,11 +3,12 @@ package com.laptrinhweb.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SerieDTO extends AbstractDTO<SerieDTO>{
+public class SerieDTO extends AbstractDTO{
 	private String code;
 	private String name;
 	private String thumbnail;
 	private List<String> workCodeList = new ArrayList<>();
+	
 	
 	public String getCode() {
 		return code;
@@ -33,4 +34,6 @@ public class SerieDTO extends AbstractDTO<SerieDTO>{
 	public void setWorkCodeList(List<String> workCodeList) {
 		this.workCodeList = workCodeList;
 	}
+	
+	
 }

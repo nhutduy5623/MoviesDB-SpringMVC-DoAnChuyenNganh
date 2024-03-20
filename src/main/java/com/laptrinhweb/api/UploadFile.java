@@ -24,7 +24,7 @@ public class UploadFile extends HttpServlet {
 		Part filePart = request.getPart("fileName");
 		String fileName = filePart.getSubmittedFileName();
 		//PathServer
-		String path = getServletContext().getRealPath("\\uploads\\");
+		String path = getServletContext().getRealPath("/images/");
 		
 		//Path clone về máy để lưu trữ khi đóng server
 		String realPath = getServletContext().getRealPath("/");
@@ -33,13 +33,13 @@ public class UploadFile extends HttpServlet {
 		String pathFolderProject = realPath.substring(0, realPath.indexOf("\\.metadata\\"))+"\\MoviesDB_springMVC\\";
 		System.out.println(pathFolderProject);
 		System.out.println(pathFolderProject);
-		File theDir = new File(pathFolderProject + "\\template\\uploads\\");
+		File theDir = new File(pathFolderProject + "\\images\\");
         if (!theDir.exists()) { //Tạo folder nếu chưa tồn tại ở máy
             theDir.mkdirs();
         }
         String pathUpload = pathFolderProject + "uploads\\";
         
-        String pathUploadServer = getServletContext().getRealPath("") + "\\template\\uploads\\";
+        String pathUploadServer = getServletContext().getRealPath("") + "\\images\\";
         theDir = new File(pathUploadServer);
         if (!theDir.exists()) { //Tạo folder nếu chưa tồn tại ở server
             theDir.mkdirs();

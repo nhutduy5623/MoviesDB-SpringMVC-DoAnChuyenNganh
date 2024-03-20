@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "work")
 public class WorkEntity extends baseEntity{
 	
-	@Column(name = "code", unique = true)
+	@Column(name = "code")
 	private String code;
 	
 	@Column(name = "name")
@@ -30,9 +30,6 @@ public class WorkEntity extends baseEntity{
 	
 	@Column(name = "thumbnail", length = 510)
 	private String thumbnail;
-	
-	@Column(name = "video", length = 510)
-	private String video;
 	
 	@Column(name = "budget")
 	private double budget;
@@ -66,11 +63,11 @@ public class WorkEntity extends baseEntity{
 	@JoinColumn(name = "serieid")
 	private SerieEntity serie;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "subgenre_work", joinColumns = @JoinColumn(name = "workid"), inverseJoinColumns = @JoinColumn(name = "subgenreid"))
 	private List<SubGenreEntity> subGenreList = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "work", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "work")
 	private List<RelatedPartyWorkDetailEntity> RelatedPartyDetailList = new ArrayList<>();
 
 	@OneToMany(mappedBy = "work")
@@ -112,14 +109,6 @@ public class WorkEntity extends baseEntity{
 
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
-	}
-	
-	public String getVideo() {
-		return video;
-	}
-
-	public void setVideo(String video) {
-		this.video = video;
 	}
 
 	public double getBudget() {

@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "subpermission")
 public class SubPermissionEntity extends baseEntity {
 
-	@Column(name = "code", unique = true)
+	@Column(name = "code")
 	private String code;
 
 	@Column(name = "name")

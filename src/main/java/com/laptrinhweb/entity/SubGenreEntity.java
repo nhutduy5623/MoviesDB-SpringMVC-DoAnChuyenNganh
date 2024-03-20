@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "subgenre")
 public class SubGenreEntity extends baseEntity {
 
-	@Column(name = "code", unique = true)
+	@Column(name = "code")
 	private String code;
 
 	@Column(name = "name")

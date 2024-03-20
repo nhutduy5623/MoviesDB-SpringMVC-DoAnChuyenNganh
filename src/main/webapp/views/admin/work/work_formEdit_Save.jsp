@@ -234,7 +234,7 @@
                                     <div class="form-group" style="display: flex; justify-content: flex-end;"><button
                                             class="btn btn-primary btnSave_Edit" id="btnSave_Edit" type="button">Submit
                                             form</button></div>
-                                    <input type="hidden" name="id" value="${model.id}">
+                                    <input type="hidden" name="id" id="id" value="${model.id}">
                                 </form:form>
                             </div>
                         </div>
@@ -440,7 +440,7 @@
                 
                 $(".btn_fillInformAPI").click(function (e) {
                 	if($("#code").val() != "")
-                		window.location.href = '${API_GetInformTMDB}'+"?code="+$("#code").val();
+                		window.location.href = '${API_GetInformTMDB}'+"?code="+$("#code").val()+"&id="+$("#id").val();
                 })
             </script>
         </div>

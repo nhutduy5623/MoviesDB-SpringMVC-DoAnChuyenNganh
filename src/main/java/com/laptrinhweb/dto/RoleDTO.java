@@ -3,7 +3,7 @@ package com.laptrinhweb.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleDTO extends AbstractDTO<RoleDTO> {
+public class RoleDTO extends AbstractDTO {
 	private String code;
 	private String name;
 	private String disription;

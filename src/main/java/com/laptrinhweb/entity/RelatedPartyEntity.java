@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "relatedparty")
 public class RelatedPartyEntity extends baseEntity{
 	
-	@Column(name = "code", unique = true)
+	@Column(name = "code")
 	private String code;
 	
 	@Column(name = "name")
@@ -129,13 +129,6 @@ public class RelatedPartyEntity extends baseEntity{
 	public void setWorkRelatedDetailList(List<RelatedPartyWorkDetailEntity> workRelatedDetailList) {
 		this.workRelatedDetailList = workRelatedDetailList;
 	}
-
-	@Override
-	public String toString() {
-		return "RelatedPartyEntity [code=" + code + ", name=" + name + "]";
-	}
-	
-	
 	
 	
 	

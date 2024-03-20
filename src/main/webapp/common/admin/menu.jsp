@@ -5,7 +5,7 @@
 <div class="sidebar-menu">
     <div class="sidebar-header">
         <div class="logo">
-            <a href="home"><h3 style="color: white;">Admin</h3></a>
+            <a href="index2.html"><img src="<c:url value='/template/admin/assets/images/icon/logo.png'/>" alt="logo"></a>
         </div>
     </div>
     <div class="main-menu">
@@ -48,9 +48,9 @@
                     
                     <li>
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
-                            <span>User Management</span></a>
+                            <span>Account Management</span></a>
 	                        <ul class="collapse">
-	                            <li><a href="<c:url value='/admin/user'/>">Account Management</a></li>
+	                            <li><a href="<c:url value='/admin/account'/>">Account Management</a></li>
 	                        </ul>
                     </li>  
                     
@@ -66,8 +66,7 @@
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
                             <span>Authorization Management</span></a>
                         <ul class="collapse">
-                            <li><a href="<c:url value='/admin/role'/>">Role Management</a></li>
-                            <li><a href="<c:url value='/admin/permission'/>">Permission Management</a></li>
+                            <li><a href="datatable.html">datatable</a></li>
                         </ul>
                     </li>                             
                 </ul>

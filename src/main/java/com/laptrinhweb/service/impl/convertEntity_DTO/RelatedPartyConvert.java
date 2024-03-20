@@ -24,7 +24,7 @@ public class RelatedPartyConvert {
 	public RelatedPartyEntity toEntity(RelatedPartyDTO relatedPartyDTO) {
 		RelatedPartyEntity relatedPartyEntity = new RelatedPartyEntity();
 		relatedPartyEntity = modelMapper.map(relatedPartyDTO, RelatedPartyEntity.class);
-		relatedPartyEntity.setRProle(relatedPartyRoleRepository.findOneByCode(relatedPartyDTO.getRoleCode()));
+		relatedPartyEntity.setRProle(relatedPartyRoleRepository.getOne(relatedPartyDTO.getRoleId()));
 		return relatedPartyEntity;
 		
 	}
@@ -32,7 +32,7 @@ public class RelatedPartyConvert {
 	public RelatedPartyDTO toDTO(RelatedPartyEntity relatedPartyEntity) {
 		RelatedPartyDTO relatedPartyDTO = new RelatedPartyDTO();
 		relatedPartyDTO = modelMapper.map(relatedPartyEntity, RelatedPartyDTO.class);
-		relatedPartyDTO.setRoleCode(relatedPartyEntity.getRProle().getCode());
+		relatedPartyDTO.setRoleId(relatedPartyEntity.getRProle().getId());
 		return relatedPartyDTO;
 	}
 }

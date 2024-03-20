@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "permission")
 public class PermissionEntity extends baseEntity {
 	
-	@Column(name = "code", unique = true)
+	@Column(name = "code")
 	private String code;
 	
 	@Column(name = "name")

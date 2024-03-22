@@ -49,15 +49,18 @@
         <div class="col-12 mt-5">
             <div class="card">
                 <div class="card-body" style="padding-top: 0%">
-                    <div style="width:100%; display: flex; flex-direction: columns; justify-content: space-between; align-content: center; margin: 2% 0% ; text-align: center;">
-	                    <div  style="text-align: center; margin: auto 0%;"><p class="header-title" style="padding: 0%; margin: 0%">Genre Data</p></div>
-	                    <div style="display: flex; justify-content: center;">
-	                    	<select  id="genreFilter" class="genreFilter" style="margin:0"> 
-	                    		<option value="-">--Chọn thể loại--</option>
-	                    		<c:forEach var="item" items="${genreList}">
-	                    			<option value="${item.code}">${item.name}</option>
-	                    		</c:forEach>	                    		
-	                    	</select>
+                    <div style="width:100%; display: flex; flex-direction: columns; justify-content: space-around; align-content: center; margin: 2% 0% ; text-align: center;">
+	                    <div  style="text-align: left; margin: auto 0%; flex: 1"><p class="header-title" style="padding: 0%; margin: 0%">SubGenre Data</p></div>
+						<div class="form-group" style="display: flex; justify-content: center; margin: 0; flex: 1; height: 150%">
+	                        <select id="genreFilter" class="genreFilter form-control" style="margin:auto; width: 40%; padding: 0; text-align: center"> 
+		                    		<option value="-">--Chọn thể loại--</option>
+		                    		<c:forEach var="item" items="${genreList}">
+		                    			<option value="${item.code}">${item.name}</option>
+		                    		</c:forEach>	                    		
+		                    </select>
+                        </div>
+	                    <div style="display: flex; justify-content: center; flex: 1">
+	                    	
 	                    </div>
 	                    <a href="subgenre/save"><button type="button" class="btn btn-primary"><div class="fw-icons"><i class="fa fa-plus-square" style="margin-right: 2px"></i> Add New</div></button></a>
                     </div>

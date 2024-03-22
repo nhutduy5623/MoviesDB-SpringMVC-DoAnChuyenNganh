@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.laptrinhweb.dto.GenreDTO;
 import com.laptrinhweb.dto.SubGenreDTO;
 import com.laptrinhweb.entity.SubGenreEntity;
 import com.laptrinhweb.repository.ISubGenreRepository;
@@ -93,7 +92,7 @@ public class SubGenreService implements ISubGenreService {
 	}
 
 	@Override
-	public Map<String, String> finAll_HasMap() {
+	public Map<String, String> findAll_HasMap() {
 		List<SubGenreEntity> subGenreEntities = subGenreRepository.findAll();
 		Map<String, String> subGenreDTO_Map = new HashMap<>();
 		for(SubGenreEntity subGenreEntity:subGenreEntities) {
@@ -117,5 +116,22 @@ public class SubGenreService implements ISubGenreService {
 		return subGenreRepository.countByName(name);
 	}
 
-	
+	@Override
+	public List<SubGenreDTO> findByGenreList_Code(String genreCode) {
+		List<SubGenreEntity> subGenreEntities = subGenreRepository.findByGenreList_Code(genreCode);
+		List<SubGenreDTO> subGenreDTOs = new ArrayList<>();
+		for(SubGenreEntity subGenreEntity:subGenreEntities) {
+			subGenreDTOs.add(subGenreConvert.toDTO(subGenreEntity));
+		}
+		return subGenreDTOs;
+	}
+
+	@Override
+	public SubGenreDTO findOneByCode(String code) {
+		SubGenreEntity subgenreEntity;
+		subgenreEntity= subGenreRepository.findOneByCode(code);
+		if(subgenreEntity == null)
+			return null;
+		return subGenreConvert.toDTO(subGenreRepository.findOneByCode(code));
+	}	
 }

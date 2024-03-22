@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.springframework.data.domain.Pageable;
 
-import com.laptrinhweb.dto.GenreDTO;
 import com.laptrinhweb.dto.SubGenreDTO;
 
 public interface ISubGenreService {
@@ -13,11 +12,13 @@ public interface ISubGenreService {
 	void delete(Long[] ids);
 	List<SubGenreDTO> findAll();
 	List<SubGenreDTO> findByGenreList_Code(String genreCode, Pageable pageable);
+	List<SubGenreDTO> findByGenreList_Code(String genreCode);
 	List<SubGenreDTO> findAll(Pageable pageable);
 	Integer countByGenreList_Code(String genreCode);
 	Integer countAll();
 	SubGenreDTO findOne(Long id);
-	Map<String, String> finAll_HasMap();
+	SubGenreDTO findOneByCode(String code);
+	Map<String, String> findAll_HasMap();
 	
 	List<SubGenreDTO> findByNamePageable(String name, Pageable pageable);
 	Integer countByName(String name);

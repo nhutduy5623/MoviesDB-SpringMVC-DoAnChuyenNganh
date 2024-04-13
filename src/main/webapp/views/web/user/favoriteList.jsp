@@ -18,6 +18,11 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.user-img a img {
+	border-radius: 50%;
+	width: 150px;
+	height: 150px;
+}
 </style>
     
 <div class="hero user-hero">
@@ -49,7 +54,7 @@
 						<ul>
 							<li><a href="<c:url value='/profile'/>">Profile</a></li>
 							<li class="active"><a href="<c:url value='/userfavorite'/>">Favorite movies</a></li>
-							<li><a href="userrate.html">Rated movies</a></li>
+							<li><a href="<c:url value='/userrate'/>">Rated movies</a></li>
 						</ul>
 					</div>
 					<div class="user-fav">

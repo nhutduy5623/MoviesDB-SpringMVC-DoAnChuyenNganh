@@ -80,7 +80,7 @@ a.disabled {
 						<ul>
 							<li class="active"><a href="<c:url value='/profile'/>">Profile</a></li>
 							<li><a href="<c:url value='/userfavorite'/>">Favorite movies</a></li>
-							<li><a href="userrate.html">Rated movies</a></li>
+							<li><a href="<c:url value='/userrate'/>">Rated movies</a></li>
 						</ul>
 					</div>
 					<div class="user-fav">
@@ -162,27 +162,11 @@ a.disabled {
 	</div>
 </div>
 <script>
-	function setOnClickBtnUserPage() {
-		const formChangePass = document.getElementById("form-change-password-profile");
-		const formProfile = document.getElementById("form-change-info-profile");
-
-		document.getElementById("btn-profile").addEventListener("click",
-				function(event) {
-					event.preventDefault();
-					formProfile.scrollIntoView({
-						behavior : "smooth",
-						block : "center"
-					});
-				});
-		document.getElementById("btn-change-password").addEventListener(
-				"click", function(event) {
-					event.preventDefault();
-					formChangePass.scrollIntoView({
-						behavior : "smooth",
-						block : "center"
-					});
-				});
-	}
+	
+	window.addEventListener("unload", function(event) {
+		event.preventDefault();
+		location.reload(true);
+	});
 
 	function changePassword(){
 		// Change password
@@ -385,8 +369,6 @@ a.disabled {
 	}
 	
 	
-	
-	setOnClickBtnUserPage();
 	changePassword();
 	changeInfo();
 	changeAvatar();
